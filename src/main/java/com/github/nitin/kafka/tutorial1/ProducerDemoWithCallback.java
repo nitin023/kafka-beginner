@@ -25,8 +25,12 @@ public class ProducerDemoWithCallback {
 
         int iter  = 10;
         while (iter > 0) {
+            String topic = "first_topic";
+            String key = "id_" + iter ;
+            String value = "hello world " + iter + " key : " + key;
         //Create producer record
-        ProducerRecord<String,String> record = new ProducerRecord<String, String>("first_topic","hello world " + iter);
+        ProducerRecord<String,String> record = new ProducerRecord<String, String>(topic,key,value);
+        System.out.println("Key: " + key);
             //send data - async
             producer.send(record, new Callback() {
                 public void onCompletion(RecordMetadata metadata, Exception exception) {
@@ -34,7 +38,7 @@ public class ProducerDemoWithCallback {
 
                     /*No error case*/
                     if (exception == null) {
-                        logger.info("Recieved new metadata. \n" +
+                        System.out.println("Recieved new metadata. \n" +
                                 "Topic : " + metadata.topic() + "\n" +
                                 "Partition : " + metadata.partition() + "\n" +
                                 "Offset : " + metadata.offset() + "\n" +
