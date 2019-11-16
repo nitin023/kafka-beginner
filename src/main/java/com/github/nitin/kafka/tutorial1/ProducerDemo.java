@@ -1,10 +1,9 @@
 package com.github.nitin.kafka.tutorial1;
 
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.serialization.StringSerializer;
+import org.apache.log4j.PropertyConfigurator;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Properties;
 
 public class ProducerDemo {
@@ -17,27 +16,14 @@ public class ProducerDemo {
          * send data
          */
 
-        //creating producer configs
-        final String bootStrapServers = "127.0.0.1:9092";
-        Properties properties = new Properties();
-        properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,bootStrapServers);
-        properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class.getName());
+        Properties props = new Properties();
+        try {
+            props.load(new FileInputStream("src/log4j.properties"));
+            PropertyConfigurator.configure(props);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-
-        //Create Producer
-        KafkaProducer<String,String>producer = new KafkaProducer<String, String>(properties);
-
-        //Create producer record
-        ProducerRecord<String,String>record = new ProducerRecord<String, String>("first_topic","hello world");
-
-        //send data - async
-        producer.send(record);
-
-        //flush data
-        producer.flush();
-
-        //close thr producer
-        producer.close();
+        ProducerDemoWithCallback.getProducerDemoCallback();
     }
 }
