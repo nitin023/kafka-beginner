@@ -18,7 +18,7 @@ public class ProducerDemo {
 
         Properties props = new Properties();
         try {
-            props.load(new FileInputStream("src/log4j.properties"));
+            props.load(new FileInputStream("/home/nitin/IdeaProjects/kafkabeginnercourse/src/log4j.properties"));
             PropertyConfigurator.configure(props);
         } catch (IOException e) {
             e.printStackTrace();

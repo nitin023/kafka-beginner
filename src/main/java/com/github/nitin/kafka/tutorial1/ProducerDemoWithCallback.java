@@ -38,7 +38,7 @@ public class ProducerDemoWithCallback {
 
                     /*No error case*/
                     if (exception == null) {
-                        System.out.println("Recieved new metadata. \n" +
+                        logger.info("Recieved new metadata. \n" +
                                 "Topic : " + metadata.topic() + "\n" +
                                 "Partition : " + metadata.partition() + "\n" +
                                 "Offset : " + metadata.offset() + "\n" +
