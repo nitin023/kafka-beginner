@@ -13,7 +13,7 @@ import java.util.Properties;
 
 public class ConsumerDemo {
 
-    public static void main(String[] args) {
+    public static void ConsumerDemoMain() {
 
         final String bootStrapServers = "127.0.0.1:9092";
         final String groupId = "my-fourth-application";

@@ -4,7 +4,7 @@ import java.util.concurrent.CountDownLatch;
 
 public class ConsumerDemoWithThread {
 
-    public static void main(String[] args) {
+    public static void ConsumerDemoWithThreadMain() {
         run();
     }
 

@@ -13,8 +13,8 @@ import java.util.Properties;
 
 public class ConsumerDemoUsingAssignAndSeek {
 
-    public static void main(String[] args) {
-
+    public static void ConsumerDemoUsingAssignAndSeekMain ()
+    {
         final String bootStrapServers = "127.0.0.1:9092";
         final String topic = "first_topic";
 
